@@ -5,15 +5,15 @@ on:
     branches: [ "main", "develop" ]
 
 jobs:
-  run_sync:
+  mirror:
     runs-on: ubuntu-latest
-    steps:                                              # <-- must use actions/checkout before mirroring!
+    steps:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
       - uses: pixta-dev/repository-mirroring-action@v1
         with:
           target_repo_url:
-            git@gitlab.com:<username>/<target_repository_name>.git
-          ssh_private_key:                              # <-- use 'secrets' to pass credential information.
-            ${{ secrets.GITLAB_SSH_PRIVATE_KEY }}
+            git@github.com:SamuelMelm/public_repo_experiment.git
+          ssh_private_key:
+            ${{ secrets.PRIVATE_SSH_KEY_FOR_GITHUB }}
